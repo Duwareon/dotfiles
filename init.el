@@ -18,6 +18,7 @@
 (straight-use-package 'undo-fu)
 (straight-use-package 'evil)
 (straight-use-package 'magit)
+(straight-use-package 'org-journal)
 
 ;; Load packages
 (require 'gruvbox-theme)
@@ -25,7 +26,10 @@
 (require 'evil)
 (require 'org)
 (require 'magit)
+(require 'org-journal)
+(require 'epa-file)
 
+(epa-file-enable)
 (load-theme 'gruvbox-dark-medium t)
 (evil-mode 1)
 
@@ -35,9 +39,18 @@
 (scroll-bar-mode -1)
 (add-to-list 'default-frame-alist '(height . 24))
 (add-to-list 'default-frame-alist '(width . 80))
-;(setq org-startup-indented t)
+(custom-set-variables
+ '(org-journal-dir "E:/OneDrive/Documents/Emacs/Journal/")
+ '(org-journal-encrypt-journal t)
+ '(org-journal-enable-encryption t)
+ '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
+ '(backup-directory-alist '((".*" . "~/.emacs.d/backups/")))
+ )
 
-;; Reminder, do not fuck with this Trenton. I know you want to.
+;; create the autosave dir if necessary, since emacs won't.
+(make-directory "~/.emacs.d/autosaves/" t)
+
+;; Reminder, do not fuck with this. I know you want to, Trenton.
 ;; Don't.
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
