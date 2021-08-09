@@ -40,7 +40,8 @@
 (scroll-bar-mode -1)
 (add-to-list 'default-frame-alist '(height . 35))
 (add-to-list 'default-frame-alist '(width . 80))
-
+(setq org-startup-truncated nil)
+;(set-fringe-mode 0)
 
 ;; Keys
 
@@ -48,16 +49,23 @@
 (make-directory "~/.emacs.d/autosaves/" t)
 
 (custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
+ '(backup-directory-alist '((".*" . "~/.emacs.d/backups/")))
  '(custom-safe-themes
    '("6f358ac456ee889d132b784afaaa1ce0bd9bdfafc89ef6e3fd5e22179ef59905" default))
  '(inhibit-startup-screen t)
  '(org-agenda-files nil)
  '(org-journal-dir "E:/OneDrive/Documents/Emacs/Journal/")
- '(org-journal-encrypt-journal t)
  '(org-journal-enable-encryption t)
- '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
- '(backup-directory-alist '((".*" . "~/.emacs.d/backups/")))
- )
+ '(org-journal-encrypt-journal t)
+ '(word-wrap t))
 (custom-set-faces
- ;; nil
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
