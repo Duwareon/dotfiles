@@ -19,6 +19,7 @@
 (straight-use-package 'evil)
 (straight-use-package 'magit)
 (straight-use-package 'org-journal)
+(straight-use-package 'elcord)
 
 ;; Load packages
 (require 'gruvbox-theme)
@@ -28,7 +29,8 @@
 (require 'magit)
 (require 'org-journal)
 (require 'epa-file)
-
+(require 'elcord)
+(elcord-mode)
 
 (epa-file-enable)
 (load-theme 'gruvbox-dark-medium t)
