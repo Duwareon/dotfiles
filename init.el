@@ -12,7 +12,7 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 (setq package-enable-at-startup nil)
-
+(setq org-roam-v2-ack t)
 ;; Use straight to grab packages
 (straight-use-package 'gruvbox-theme)
 (straight-use-package 'undo-fu)
@@ -20,6 +20,8 @@
 (straight-use-package 'magit)
 (straight-use-package 'org-journal)
 (straight-use-package 'elcord)
+(straight-use-package 'rust-mode)
+(straight-use-package 'org-roam)
 
 ;; Load packages
 (require 'gruvbox-theme)
@@ -30,6 +32,8 @@
 (require 'org-journal)
 (require 'epa-file)
 (require 'elcord)
+(require 'rust-mode)
+(require 'org-roam)
 (elcord-mode)
 
 (epa-file-enable)
@@ -43,6 +47,7 @@
 (add-to-list 'default-frame-alist '(height . 35))
 (add-to-list 'default-frame-alist '(width . 80))
 (setq org-startup-truncated nil)
+
 ;(set-fringe-mode 0)
 
 ;; Keys
