@@ -12,7 +12,6 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 (setq package-enable-at-startup nil)
-(setq org-roam-v2-ack t)
 ;; Use straight to grab packages
 (straight-use-package 'gruvbox-theme)
 (straight-use-package 'undo-fu)
@@ -21,7 +20,21 @@
 (straight-use-package 'org-journal)
 (straight-use-package 'elcord)
 (straight-use-package 'rust-mode)
-(straight-use-package 'org-roam)
+(straight-use-package 'use-package)
+(use-package org-roam
+ 	     :straight t
+	     :init
+	     (setq org-roam-v2-ack t)
+	     :custom
+	     (org-roam-directory "~/RoamNotes")
+	     (org-roam-dailies-directory "journal/")
+	     (org-roam-completion-everywhere t)
+	     :bind (("C-c n l" . org-roam-buffer-toggle)
+		    ("C-c n f" . org-roam-node-find)
+		    ("C-c n i" . org-roam-node-insert)
+		    :map org-mode-map
+		    ("C-M-i" . completion-at-point)
+		    :map org-roam-dailies-map))
 
 ;; Load packages
 (require 'gruvbox-theme)
