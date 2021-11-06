@@ -17,8 +17,8 @@
 (straight-use-package 'undo-fu)
 (straight-use-package 'evil)
 (straight-use-package 'magit)
-(straight-use-package 'org-journal)
-(straight-use-package 'elcord)
+;(straight-use-package 'org-journal)
+;(straight-use-package 'elcord)
 (straight-use-package 'rust-mode)
 (straight-use-package 'use-package)
 (use-package org-roam
@@ -49,12 +49,12 @@
 (require 'evil)
 (require 'org)
 (require 'magit)
-(require 'org-journal)
+;(require 'org-journal)
 (require 'epa-file)
-(require 'elcord)
+;(require 'elcord)
 (require 'rust-mode)
 (require 'org-roam)
-(elcord-mode)
+;(elcord-mode)
 
 (epa-file-enable)
 (load-theme 'gruvbox-dark-medium t)
@@ -85,10 +85,10 @@
  '(custom-safe-themes
    '("6f358ac456ee889d132b784afaaa1ce0bd9bdfafc89ef6e3fd5e22179ef59905" default))
  '(inhibit-startup-screen t)
- '(org-agenda-files nil)
- '(org-journal-dir "E:/OneDrive/Documents/Emacs/Journal/")
- '(org-journal-enable-encryption t)
- '(org-journal-encrypt-journal t)
+ ;'(org-agenda-files nil)
+ ;'(org-journal-dir "E:/OneDrive/Documents/Emacs/Journal/")
+ ;'(org-journal-enable-encryption t)
+ ;'(org-journal-encrypt-journal t)
  '(word-wrap t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
