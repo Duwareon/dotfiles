@@ -20,6 +20,7 @@
 ;(straight-use-package 'org-journal)
 ;(straight-use-package 'elcord)
 (straight-use-package 'rust-mode)
+(straight-use-package 'omnisharp)
 (straight-use-package 'use-package)
 (use-package org-roam
  	     :straight t
@@ -53,6 +54,7 @@
 (require 'epa-file)
 ;(require 'elcord)
 (require 'rust-mode)
+(require 'omnisharp)
 (require 'org-roam)
 ;(elcord-mode)
 
