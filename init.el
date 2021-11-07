@@ -20,7 +20,7 @@
 ;(straight-use-package 'org-journal)
 ;(straight-use-package 'elcord)
 (straight-use-package 'rust-mode)
-(straight-use-package 'omnisharp)
+;(straight-use-package 'omnisharp)
 (straight-use-package 'use-package)
 (use-package org-roam
  	     :straight t
@@ -54,7 +54,7 @@
 (require 'epa-file)
 ;(require 'elcord)
 (require 'rust-mode)
-(require 'omnisharp)
+;(require 'omnisharp)
 (require 'org-roam)
 ;(elcord-mode)
 
@@ -69,6 +69,7 @@
 (add-to-list 'default-frame-alist '(height . 35))
 (add-to-list 'default-frame-alist '(width . 80))
 (setq org-startup-truncated nil)
+
 
 ;(set-fringe-mode 0)
 
