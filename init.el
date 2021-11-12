@@ -22,6 +22,7 @@
 (straight-use-package 'rust-mode)
 ;(straight-use-package 'omnisharp)
 (straight-use-package 'use-package)
+(straight-use-package 'elpy)
 (use-package org-roam
  	     :straight t
 	     :init
@@ -43,24 +44,24 @@
 	     :config
 	     (require 'org-roam-dailies) ;; Ensure the keymap is available
 	     (org-roam-db-autosync-mode))
-
-;; Load packages
-(require 'gruvbox-theme)
-(require 'undo-fu)
-(require 'evil)
-(require 'org)
-(require 'magit)
-;(require 'org-journal)
-(require 'epa-file)
-;(require 'elcord)
-(require 'rust-mode)
-;(require 'omnisharp)
-(require 'org-roam)
-;(elcord-mode)
+(use-package org-roam-ui
+  :straight
+    (:host github :repo "org-roam/org-roam-ui" :branch "main" :files ("*.el" "out"))
+    :after org-roam
+;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+;;         a hookable mode anymore, you're advised to pick something yourself
+;;         if you don't care about startup time, use
+;;  :hook (after-init . org-roam-ui-mode)
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start t))
 
 (epa-file-enable)
 (load-theme 'gruvbox-dark-medium t)
 (evil-mode 1)
+(elpy-enable)
 
 ;; Customizations
 (menu-bar-mode -1)
@@ -69,7 +70,8 @@
 (add-to-list 'default-frame-alist '(height . 35))
 (add-to-list 'default-frame-alist '(width . 80))
 (setq org-startup-truncated nil)
-
+(setq org-startup-indented t)
+(set-face-attribute 'default nil :font "mononoki" :height 120)
 
 ;(set-fringe-mode 0)
 
