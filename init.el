@@ -12,6 +12,7 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 (setq package-enable-at-startup nil)
+
 ;; Use straight to grab packages
 (straight-use-package 'gruvbox-theme)
 (straight-use-package 'undo-fu)
@@ -73,8 +74,6 @@
 (setq org-startup-indented t)
 (set-face-attribute 'default nil :font "mononoki" :height 120)
 
-;(set-fringe-mode 0)
-
 ;; Keys
 
 ;; create the autosave dir if necessary, since emacs won't.
@@ -90,10 +89,6 @@
  '(custom-safe-themes
    '("6f358ac456ee889d132b784afaaa1ce0bd9bdfafc89ef6e3fd5e22179ef59905" default))
  '(inhibit-startup-screen t)
- ;'(org-agenda-files nil)
- ;'(org-journal-dir "E:/OneDrive/Documents/Emacs/Journal/")
- ;'(org-journal-enable-encryption t)
- ;'(org-journal-encrypt-journal t)
  '(word-wrap t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
