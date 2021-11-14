@@ -72,7 +72,7 @@
 (add-to-list 'default-frame-alist '(width . 80))
 (setq org-startup-truncated nil)
 (setq org-startup-indented t)
-(set-face-attribute 'default nil :font "mononoki" :height 120)
+(set-face-attribute 'default nil :font "JetBrains Mono" :height 120)
 
 ;; Keys
 
