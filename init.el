@@ -73,6 +73,7 @@
 (setq org-startup-truncated nil)
 (setq org-startup-indented t)
 (set-face-attribute 'default nil :font "JetBrains Mono" :height 120)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
 ;; Keys
 
