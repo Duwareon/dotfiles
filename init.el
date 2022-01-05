@@ -12,53 +12,24 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 (setq package-enable-at-startup nil)
+(straight-use-package 'use-package)
 
 ;; Use straight to grab packages
 (straight-use-package 'gruvbox-theme)
 (straight-use-package 'undo-fu)
 (straight-use-package 'evil)
 (straight-use-package 'magit)
-;(straight-use-package 'org-journal)
 ;(straight-use-package 'elcord)
 (straight-use-package 'rust-mode)
-;(straight-use-package 'omnisharp)
-(straight-use-package 'use-package)
 (straight-use-package 'elpy)
-(use-package org-roam
- 	     :straight t
-	     :init
-	     (setq org-roam-v2-ack t)
-	     :custom
-	     (org-roam-directory "~/RoamNotes")
-	     (org-roam-dailies-directory "journal/")
-	     (org-roam-completion-everywhere t)
-	     :bind (("C-c n l" . org-roam-buffer-toggle)
-		    ("C-c n f" . org-roam-node-find)
-		    ("C-c n i" . org-roam-node-insert)
-		    :map org-mode-map
-		    ("C-M-i" . completion-at-point)
-		    :map org-roam-dailies-map
-		    ("Y" . org-roam-dailies-capture-yesterday)
-		    ("T" . org-roam-dailies-capture-tomorrow))
-	     :bind-keymap
-	     ("C-c n d" . org-roam-dailies-map)
-	     :config
-	     (require 'org-roam-dailies) ;; Ensure the keymap is available
-	     (org-roam-db-autosync-mode))
-(use-package org-roam-ui
-  :straight
-    (:host github :repo "org-roam/org-roam-ui" :branch "main" :files ("*.el" "out"))
-    :after org-roam
-;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
-;;         a hookable mode anymore, you're advised to pick something yourself
-;;         if you don't care about startup time, use
-;;  :hook (after-init . org-roam-ui-mode)
-    :config
-    (setq org-roam-ui-sync-theme t
-          org-roam-ui-follow t
-          org-roam-ui-update-on-save t
-          org-roam-ui-open-on-start t))
+(straight-use-package 'tree-sitter)
+(straight-use-package 'tree-sitter-langs)
+(straight-use-package 'tree-sitter-indent)
+(straight-use-package 'csharp-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.cs\\'" . csharp-tree-sitter-mode)))
 
+;; Setup packages
 (epa-file-enable)
 (load-theme 'gruvbox-dark-medium t)
 (evil-mode 1)
@@ -73,9 +44,6 @@
 (setq org-startup-truncated nil)
 (setq org-startup-indented t)
 (set-face-attribute 'default nil :font "JetBrains Mono" :height 120)
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
-
-;; Keys
 
 ;; create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves/" t)
