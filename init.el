@@ -15,6 +15,7 @@
 
 
 
+;; basic packages
 (use-package which-key
   :ensure
   :init
@@ -36,8 +37,11 @@
   :init
   (evil-mode 1))
 
-;; Rust stuff
+(use-package magit :ensure)
 
+
+
+;; Programming stuff
 (use-package rustic
   :ensure
   :bind (:map rustic-mode-map
@@ -56,22 +60,11 @@
   ;; (setq lsp-signature-auto-activate nil)
 
   ;; comment to disable rustfmt on save
-  (setq rustic-format-on-save t)
-  (add-hook 'rustic-mode-hook 'rk/rustic-mode-hook))
-
-(defun rk/rustic-mode-hook ()
-  ;; so that run C-c C-c C-r works without having to confirm, but don't try to
-  ;; save rust buffers that are not file visiting. Once
-  ;; https://github.com/brotzeit/rustic/issues/253 has been resolved this should
-  ;; no longer be necessary.
-  (when buffer-file-name
-    (setq-local buffer-save-without-query t)))
+  (setq rustic-format-on-save t))
 
 (use-package lsp-mode
-  :ensure
   :commands lsp
   :custom
-  ;; what to use when checking on-save. "check" is default, I prefer clippy
   (lsp-rust-analyzer-cargo-watch-command "clippy")
   (lsp-eldoc-render-all t)
   (lsp-idle-delay 0.6)
@@ -93,6 +86,7 @@
   (lsp-ui-peek-always-show t)
   (lsp-ui-sideline-show-hover t)
   (lsp-ui-doc-enable nil))
+  
 
 (use-package company
   :ensure
@@ -104,56 +98,14 @@
 	      ("C-n". company-select-next)
 	      ("C-p". company-select-previous)
 	      ("M-<". company-select-first)
-	      ("M->". company-select-last))
-  (:map company-mode-map
-	("<tab>". tab-indent-or-complete)
-	("TAB". tab-indent-or-complete)))
-
-(defun company-yasnippet-or-completion ()
-  (interactive)
-  (or (do-yas-expand)
-      (company-complete-common)))
-
-(defun check-expansion ()
-  (save-excursion
-    (if (looking-at "\\_>") t
-      (backward-char 1)
-      (if (looking-at "\\.") t
-        (backward-char 1)
-        (if (looking-at "::") t nil)))))
-
-(defun do-yas-expand ()
-  (let ((yas/fallback-behavior 'return-nil))
-    (yas/expand)))
-
-(defun tab-indent-or-complete ()
-  (interactive)
-  (if (minibufferp)
-      (minibuffer-complete)
-    (if (or (not yas/minor-mode)
-            (null (do-yas-expand)))
-        (if (check-expansion)
-            (company-complete-common)
-          (indent-for-tab-command)))))
-
-
-(use-package yasnippet
-  :ensure
-  :config
-  (yas-reload-all)
-  (add-hook 'prog-mode-hook 'yas-minor-mode)
-  (add-hook 'text-mode-hook 'yas-minor-mode))
+	      ("M->". company-select-last)))
 
 (use-package flycheck :ensure)
-
 
 ;; Simple configurations
 
 (load-theme 'gruvbox-dark-medium t)
-(fset 'yes-or-no-p 'y-or-n-p)
-(recentf-mode 1)
-(setq recentf-max-saved-items 100
-      inhibit-startup-message t
+(setq inhibit-startup-message t
       ring-bell-function 'ignore)
 
 (tool-bar-mode 0)
@@ -163,4 +115,11 @@
 
 (set-face-attribute 'default nil :font "Less Perfect DOS VGA-12")
 
-;(load-file (expand-file-name "init.el" user-emacs-directory))
+(defun open-init ()
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
+(defun load-init ()
+  (interactive)
+  (load "~/.emacs.d/init.el"))
+
+
