@@ -13,6 +13,7 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+(require 'use-package-ensure)
 (setq use-package-always-ensure t) 
 ;; basic packages
 (use-package which-key
@@ -42,9 +43,12 @@
 
 (use-package org)
 
+(use-package org-bullets
+  :init
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
 (use-package mixed-pitch
-  :config
-  
+  :config 
   (add-hook 'text-mode-hook #'mixed-pitch-mode)
   (add-hook 'org-mode-hook #'mixed-pitch-mode))
 
@@ -53,6 +57,19 @@
 (use-package vterm)
 
 (use-package flycheck)
+
+(use-package visual-fill-column)
+
+(use-package writeroom-mode)
+
+(use-package disable-mouse
+  :init
+  (global-disable-mouse-mode)
+  (mapc #'disable-mouse-in-keymap
+	(list evil-motion-state-map
+	      evil-normal-state-map
+	      evil-visual-state-map
+	      evil-insert-state-map)))
 
 ;; Programming stuff
 (use-package rustic
@@ -118,6 +135,7 @@
 
 (load-theme 'gruvbox-dark-medium t)
 (setq inhibit-startup-message t
+      org-bullets-bullet-list '("●")
       ring-bell-function 'ignore)
 (tool-bar-mode 0)
 (menu-bar-mode 0)
@@ -126,6 +144,11 @@
 
 (set-face-attribute 'default nil :font "Less Perfect DOS VGA-12")
 (set-face-attribute 'variable-pitch nil :font "ETBembo")
+
+(set-face-attribute 'org-document-title nil :height 2.0)
+(set-face-attribute 'org-level-1 nil :height 1.8)
+(set-face-attribute 'org-level-2 nil :height 1.5)
+(set-face-attribute 'org-level-3 nil :height 1.25)
 
 
 (add-hook 'vterm-mode-hook 'turn-off-evil-mode)
@@ -157,7 +180,7 @@
 					    internal-border-width 2)
 				      (hl-line-mode -1)
 				      (set-window-buffer nil (current-buffer))
-				      (text-scale-set 2)))
+				      (text-scale-set 1)))
 (setq org-startup-indented t
       org-directory "~/.emacs.d/org"
       org-default-notes-file (concat org-directory "/notes.org")
