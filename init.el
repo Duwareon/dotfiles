@@ -124,8 +124,8 @@
 (when (fboundp 'scroll-bar-mode)
   (scroll-bar-mode 0))
 
-(set-face-attribute 'default nil :font "JetBrains Mono-12")
-(set-face-attribute 'variable-pitch nil :font "ETBembo-12")
+(set-face-attribute 'default nil :font "Less Perfect DOS VGA-12")
+(set-face-attribute 'variable-pitch nil :font "ETBembo")
 
 
 (add-hook 'vterm-mode-hook 'turn-off-evil-mode)
@@ -146,22 +146,23 @@
 (require 'ob-python)
 (require 'ob-latex)
 
-(setq org-hide-emphasis-markers t)
 (font-lock-add-keywords 'org-mode
 			'(("^ +\\([-*]\\) "
 			   (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 
-(add-hook 'org-mode-hook '(lambda () ('(mixed-pitch-mode)
-				      (setq line-spacing 0.1
+(add-hook 'org-mode-hook (lambda () (setq line-spacing 0.1
 					    header-line-format " "
 					    left-margin-width 2
 					    right-margin-width 2
 					    internal-border-width 2)
 				      (hl-line-mode -1)
-				      (set-window-buffer nil (current-buffer)))))
+				      (set-window-buffer nil (current-buffer))
+				      (text-scale-set 2)))
 (setq org-startup-indented t
-      org-bullets-bullet-list '(" ") ;; no bullets, needs org-bullets package
-      org-ellipsis "  " ;; folding symbol
+      org-directory "~/.emacs.d/org"
+      org-default-notes-file (concat org-directory "/notes.org")
+      org-hide-emphasis-markers t 
+      org-ellipsis "..." ;; folding symbol
       org-pretty-entities t
       org-hide-emphasis-markers t
       ;; show actually italicized text instead of /italicized text/
@@ -169,12 +170,6 @@
       org-fontify-whole-heading-line t
       org-fontify-done-headline t
       org-fontify-quote-and-verse-blocks t)
-
-(dolist
-    (buf (list " *Minibuf-0*" " *Minibuf-1*" " *Echo Area 0*" " *Echo Area 1*" "*Quail Completions*"))
-  (when (get-buffer buf)
-    (with-current-buffer buf
-      (setq-local face-remapping-alist '((default (:height (1.0/1.2))))))))
 
 (defun open-init ()
   (interactive)
